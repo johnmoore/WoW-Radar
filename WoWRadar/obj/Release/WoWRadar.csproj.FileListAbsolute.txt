@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Release\WoWRadar.exe
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Release\WoWRadar.pdb
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Release\MemoryReader.dll
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.frmMain.resources
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.exe
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.pdb

@@ -1,0 +1,11 @@
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\WoWRadar.frmMain.resources
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\WoWRadar.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\WoWRadar.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Debug\WoWRadar.exe
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Debug\WoWRadar.pdb
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\bin\Debug\MemoryReader.dll
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\WoWRadar.exe
+C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Debug\WoWRadar.pdb
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Debug\WoWRadar.exe
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Debug\WoWRadar.pdb
