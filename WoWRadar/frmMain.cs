@@ -461,9 +461,11 @@ namespace WoWRadar
             LocalPlayer.UnitFieldsAddress = WowReader.ReadUInt32((IntPtr)(LocalPlayer.BaseAddress + ObjectOffsets.UnitFields));
             LocalPlayer.CurrentHealth = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.Health));
             LocalPlayer.MaxHealth = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.MaxHealth));
+            LocalPlayer.CurrentEnergy = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.Energy));
+            LocalPlayer.MaxEnergy = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.MaxEnergy));
             LocalPlayer.Level = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.Level));
             LocalPlayer.Name = PlayerNameFromGuid(LocalPlayer.Guid);
-            LocalTarget.Guid = WowReader.ReadUInt64((IntPtr)(ClientOffsets.LocalPlayerGUID));
+            LocalTarget.Guid = WowReader.ReadUInt64((IntPtr)(ClientOffsets.LocalTargetGUID));
 
             Graphics g = Graphics.FromImage(RadarBitmap);
 
@@ -504,6 +506,8 @@ namespace WoWRadar
                 LocalTarget.UnitFieldsAddress = WowReader.ReadUInt32((IntPtr)(LocalTarget.BaseAddress + ObjectOffsets.UnitFields));
                 LocalTarget.CurrentHealth = WowReader.ReadUInt32((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.Health));
                 LocalTarget.MaxHealth = WowReader.ReadUInt32((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.MaxHealth));
+                LocalTarget.CurrentEnergy = WowReader.ReadUInt32((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.Energy));
+                LocalTarget.MaxEnergy = WowReader.ReadUInt32((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.MaxEnergy));
                 LocalTarget.Level = WowReader.ReadUInt32((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.Level));
                 LocalTarget.SummonedBy = WowReader.ReadUInt64((IntPtr)(LocalTarget.UnitFieldsAddress + UnitOffsets.SummonedBy));
 
@@ -541,6 +545,8 @@ namespace WoWRadar
                             CurrentObject.CurrentHealth = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.Health));
                             CurrentObject.MaxHealth = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.MaxHealth));
                             CurrentObject.SummonedBy = WowReader.ReadUInt64((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.SummonedBy));
+                            CurrentObject.CurrentEnergy = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.Energy));
+                            CurrentObject.MaxEnergy = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.MaxEnergy));
 
                             if (CurrentObject.SummonedBy > 0)
                             {
@@ -571,6 +577,8 @@ namespace WoWRadar
                             CurrentObject.CurrentHealth = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.Health));
                             CurrentObject.MaxHealth = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.MaxHealth));
                             CurrentObject.MaxEnergy = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.MaxEnergy));
+                            CurrentObject.CurrentEnergy = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.Energy));
+                            CurrentObject.MaxEnergy = WowReader.ReadUInt32((IntPtr)(CurrentObject.UnitFieldsAddress + UnitOffsets.MaxEnergy));
 
                             if (CurrentObject.CurrentHealth <= 0)
                             {
@@ -583,9 +591,9 @@ namespace WoWRadar
                             break;
 
                         case 5:
-                            CurrentObject.XPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + 0xEC));
-                            CurrentObject.YPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + 0xE8));
-                            CurrentObject.ZPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + 0xF0));
+                            CurrentObject.XPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + ObjectOffsets.Node_Pos_X));
+                            CurrentObject.YPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + ObjectOffsets.Node_Pos_Y));
+                            CurrentObject.ZPos = WowReader.ReadFloat((IntPtr)(CurrentObject.BaseAddress + ObjectOffsets.Node_Pos_Z));
                             
                             int objectID = WowReader.ReadInt((IntPtr)(WowReader.ReadUInt((IntPtr)(CurrentObject.BaseAddress + 0x08)) + (0x8 * 4)));
                             CurrentObject.Name = "??";

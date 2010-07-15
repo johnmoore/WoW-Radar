@@ -41,6 +41,7 @@ namespace WoWRadar
         LocalGuidOffset = 0xC0,
         NextObjectOffset = 0x3C,
         LocalPlayerGUID = 0xBD07A8,
+        LocalTargetGUID = 0x00BD07B0,
         CurrentContinent = 0x00ACCF04
     }
 
@@ -60,13 +61,17 @@ namespace WoWRadar
         Pos_Z = 0x7A0,
         Rot = 0x7A8,
         Guid = 0x30,
-        UnitFields = 0x8
+        UnitFields = 0x8,
+        Node_Pos_X = 0xEC,
+        Node_Pos_Y = 0xE8,
+        Node_Pos_Z = 0xF0
     }
 
     public enum UnitOffsets : uint
     {
         Level = 0x36 * 4,
         Health = 0x18 * 4,
+        Energy = 0x19 * 4,
         MaxHealth = 0x20 * 4,
         SummonedBy = 0xE * 4,
         MaxEnergy = 0x21 * 4
