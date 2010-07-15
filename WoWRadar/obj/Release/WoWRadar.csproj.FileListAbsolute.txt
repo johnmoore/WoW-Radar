@@ -7,3 +7,12 @@ C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.
 C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.exe
 C:\Users\Administrator\Desktop\Downloads\Firefox Downloads\wowradars\WoWRadar 3.3.5\WoWRadar\WoWRadar\obj\Release\WoWRadar.pdb
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\bin\Release\WoWRadar.exe
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\bin\Release\WoWRadar.pdb
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\bin\Release\MemoryReader.dll
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\WoWRadar.frmMain.resources
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\WoWRadar.Properties.Resources.resources
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\WoWRadar.csproj.GenerateResource.Cache
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\WoWRadar.exe
+C:\Program Files (x86)\Git\WoW-Radar\WoWRadar\obj\Release\WoWRadar.pdb
