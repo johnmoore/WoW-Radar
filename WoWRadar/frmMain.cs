@@ -492,7 +492,7 @@ namespace WoWRadar
 
             if (chkRadius.Checked == true)
             {
-                g.DrawEllipse(new Pen(new SolidBrush(Color.FromArgb(200, 127, 127, 127)), 5), (((int)(1)) * RadarZoom + RadarWidth / 2) - 150, (((int)(1)) * RadarZoom + RadarWidth / 2) - 150, 300, 300);
+                g.DrawEllipse(new Pen(new SolidBrush(Color.FromArgb(200, 127, 127, 127)), 5), (((int)(1)) * RadarZoom + RadarWidth / 2) - (150 * (RadarZoom)), (((int)(1)) * RadarZoom + RadarWidth / 2) - (150 * RadarZoom), 300 * RadarZoom, 300 * RadarZoom);
             }
 
             if (LocalTarget.Guid != 0)

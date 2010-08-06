@@ -389,6 +389,7 @@
             this.chkWaypoint.TabIndex = 46;
             this.chkWaypoint.Text = "Waypoints";
             this.chkWaypoint.UseVisualStyleBackColor = true;
+            this.chkWaypoint.CheckedChanged += new System.EventHandler(this.chkWaypoint_CheckedChanged);
             // 
             // chkRadius
             // 
@@ -464,6 +465,7 @@
             this.tkbRefreshRate.TickFrequency = 10;
             this.tkbRefreshRate.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tkbRefreshRate.Value = 100;
+            this.tkbRefreshRate.Scroll += new System.EventHandler(this.tkbRefreshRate_Scroll);
             // 
             // frmMain
             // 
