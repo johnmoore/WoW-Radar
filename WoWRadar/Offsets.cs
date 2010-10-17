@@ -30,51 +30,58 @@ using System.Text;
 
 namespace WoWRadar
 {
-    //Offsets for 3.3.5 build 12340
+    //Offsets for 4.0.1 build 13164
     //Thanks to MMOwned.com users
 
-    public enum ClientOffsets : uint
+    public static class ClientOffsets
     {
-        StaticClientConnection = 0x00C79CE0,
-        ObjectManagerOffset = 0x2ED0,
-        FirstObjectOffset = 0xAC,
-        LocalGuidOffset = 0xC0,
-        NextObjectOffset = 0x3C,
-        LocalPlayerGUID = 0xBD07A8,
-        LocalTargetGUID = 0x00BD07B0,
-        CurrentContinent = 0x00ACCF04
+        public static uint
+            CurrMgr = 0x008A5C20,
+            CurrMgrEx = 0x4618,
+            FirstObjectOffset = 0xB4,
+            LocalGuidOffset = 0xC8,
+            NextObjectOffset = 0x3C,
+            LocalPlayerGUID = 0x008BD838,
+            LocalTargetGUID = 0x9816B0,
+            CurrentContinent = 0xBFF84C;
     }
 
-    public enum NameOffsets : ulong
+    public static class NameOffsets
     {
-        nameStore = 0x00C5D938 + 0x8,
-        nameMask = 0x24,
-        nameBase = 0x1C,
-        nameString = 0x20
+        public static uint
+            nameStore = 0x881988 + 0x8,
+            nameMask = 0x24,
+            nameBase = 0x1C,
+            nameString = 0x20,
+            PlayerName = 0x008A5C58,
+            mobName = 0xA0C,
+            mobNameEx = 0x60,
+            continentName = 0x9162A0,
+            continentNameEx = 0x28DC;
     }
 
     public enum ObjectOffsets : uint
     {
         Type = 0x14,
-        Pos_X = 0x79C,
-        Pos_Y = 0x798,
-        Pos_Z = 0x7A0,
-        Rot = 0x7A8,
+        Pos_X = 0x884,
+        Pos_Y = 0x880,
+        Pos_Z = 0x888,
+        Rot = ObjectOffsets.Pos_Y + 0x10,
         Guid = 0x30,
         UnitFields = 0x8,
-        Node_Pos_X = 0xEC,
-        Node_Pos_Y = 0xE8,
-        Node_Pos_Z = 0xF0
+        Node_Pos_X = 0x110,
+        Node_Pos_Y = 0x114,
+        Node_Pos_Z = 0x118
     }
 
     public enum UnitOffsets : uint
     {
-        Level = 0x36 * 4,
-        Health = 0x18 * 4,
-        Energy = 0x19 * 4,
-        MaxHealth = 0x20 * 4,
-        SummonedBy = 0xE * 4,
-        MaxEnergy = 0x21 * 4
+        Level = (0x8 + 0x40) * 4,
+        Health = (0x8 + 0x12) * 4,
+        Energy = (0x8 + 0x13) * 4,
+        MaxHealth = (0x8 + 0x1E) * 4,
+        SummonedBy = (0x8 + 0x8) * 4,
+        MaxEnergy = (0x8 + 0x1F) * 4
     }
 
     public enum MineNodes : int

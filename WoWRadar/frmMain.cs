@@ -33,6 +33,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections;
+using System.Diagnostics;
 
 namespace WoWRadar
 {
@@ -54,11 +55,10 @@ namespace WoWRadar
         PointF OldPosition;
 
         uint ObjectManager = 0;
-        uint ClientConnection = 0;
         uint FirstObject = 0;
         uint TotalWowObjects = 0;
         int ZPosRange = 100;
-        int CurrentContinent = 0;
+        string CurrentContinent = "";
         float RadarZoom = 10F;
         int ZoomFactor = 0; //this syncs the radar's zoom with the minimap
 
@@ -100,18 +100,19 @@ namespace WoWRadar
         public string MobNameFromGuid(ulong Guid)
         {
             uint ObjectBase = GetObjectBaseByGuid(Guid);
-            return WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(WowReader.ReadUInt32((IntPtr)(ObjectBase + 0x964)) + 0x05C))));
+            return WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(WowReader.ReadUInt32((IntPtr)(ObjectBase + NameOffsets.mobName)) + NameOffsets.mobNameEx))));
         }
 
         // Credits WhatSupMang, SillyBoy72 of MMowned.com
         public string PlayerNameFromGuid(ulong guid)
         {
+            return "???";
             ulong mask, base_, offset, current, shortGUID, testGUID;
 
-            mask = WowReader.ReadUInt32((IntPtr)((ulong)NameOffsets.nameStore + (ulong)NameOffsets.nameMask));
-            base_ = WowReader.ReadUInt32((IntPtr)((ulong)NameOffsets.nameStore + (ulong)NameOffsets.nameBase));
+            mask = WowReader.ReadUInt32((IntPtr)((uint)NameOffsets.nameStore + (uint)NameOffsets.nameMask));
+            base_ = WowReader.ReadUInt32((IntPtr)((uint)NameOffsets.nameStore + (uint)NameOffsets.nameBase));
 
-            shortGUID = guid & 0xffffffff; 
+            shortGUID = guid & 0xFFFFFFFF; 
             offset = 12 * (mask & shortGUID);
 
             current = WowReader.ReadUInt32((IntPtr)(base_ + offset + 8));
@@ -203,24 +204,9 @@ namespace WoWRadar
                 try
                 {
                     Image Minimap;
-                    if (CurrentContinent == 1)
-                    {
-                        Minimap = Image.FromFile("Maps\\Azeroth\\map" + x + "_" + y + ".blp.png");
-                    }
-                    else if (CurrentContinent == 0)
-                    {
-                        Minimap = Image.FromFile("Maps\\Kalimdor\\map" + x + "_" + y + ".blp.png");
-                    }
-                    else if (CurrentContinent == 3 || CurrentContinent == -2)
-                    {
-                        Minimap = Image.FromFile("Maps\\Northrend\\map" + x + "_" + y + ".blp.png");
-                    }
-                    else if (CurrentContinent == 2)
-                    {
-                        Minimap = Image.FromFile("Maps\\Expansion01\\map" + x + "_" + y + ".blp.png");
-                    }
-                    else
-                    {
+                    try {
+                        Minimap = Image.FromFile("Maps\\" + CurrentContinent + "\\map" + x + "_" + y + ".blp.png");
+                    } catch (Exception ex) {
                         Minimap = null;
                     }
 
@@ -382,15 +368,15 @@ namespace WoWRadar
         private Boolean LoadAddresses()
         {
             WowReader.SetProcess("Wow", "Read");
-
-            ClientConnection = WowReader.ReadUInt32((IntPtr)(ClientOffsets.StaticClientConnection));
-            ObjectManager = WowReader.ReadUInt32((IntPtr)(ClientConnection + ClientOffsets.ObjectManagerOffset));
+            Process[] Processes = Process.GetProcessesByName("Wow");
+            
+            uint BAdd = (uint)Processes[0].MainModule.BaseAddress;
+            ObjectManager = WowReader.ReadUInt32((IntPtr)(WowReader.ReadUInt32((IntPtr)(BAdd + ClientOffsets.CurrMgr)) + ClientOffsets.CurrMgrEx)); //WowReader.ReadUInt32((IntPtr)(ClientConnection + ClientOffsets.ObjectManagerOffset));
             FirstObject = WowReader.ReadUInt32((IntPtr)(ObjectManager + ClientOffsets.FirstObjectOffset));
-            LocalTarget.Guid = WowReader.ReadUInt64((IntPtr)(ClientOffsets.LocalPlayerGUID));
             LocalPlayer.Guid = WowReader.ReadUInt64((IntPtr)(ObjectManager + ClientOffsets.LocalGuidOffset));
 
-            this.lblClientConnection.Text = "Client Connection: " + ToHexString(ClientConnection);
-            this.lblObjectManager.Text = "Object Manager: " + ToHexString(ObjectManager);
+            this.lblClientConnection.Text = "Client Connection: [Obsolete]";
+            this.lblObjectManager.Text = "[Current] Object Manager: " + ToHexString(ObjectManager);
             this.lblFirstObject.Text = "First Object: " + ToHexString(FirstObject);
 
             if (LocalPlayer.Guid == 0)
@@ -431,10 +417,12 @@ namespace WoWRadar
 
         private void RadarTimer_Tick(object sender, EventArgs e)
         {
+            Process[] Processes = Process.GetProcessesByName("Wow");
+            uint BAdd = (uint)Processes[0].MainModule.BaseAddress;
             RadarZoom = (trkZoom.Value / 10);
             this.lblRadarZoom.Text = "Zoom Factor: " + RadarZoom.ToString() + "x";
             ZoomFactor = (int)(TILE_HEIGHT * (float)(RadarZoom / 0.5f));
-            CurrentContinent = WowReader.ReadInt((IntPtr)(ClientOffsets.CurrentContinent));
+            CurrentContinent = WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(BAdd + NameOffsets.continentName)) + NameOffsets.continentNameEx));
 
             ClearBitmap(ref RadarBitmap);
 
@@ -464,8 +452,9 @@ namespace WoWRadar
             LocalPlayer.CurrentEnergy = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.Energy));
             LocalPlayer.MaxEnergy = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.MaxEnergy));
             LocalPlayer.Level = WowReader.ReadUInt32((IntPtr)(LocalPlayer.UnitFieldsAddress + UnitOffsets.Level));
-            LocalPlayer.Name = PlayerNameFromGuid(LocalPlayer.Guid);
-            LocalTarget.Guid = WowReader.ReadUInt64((IntPtr)(ClientOffsets.LocalTargetGUID));
+            LocalPlayer.Name = WowReader.ReadString((IntPtr)(BAdd + NameOffsets.PlayerName));
+
+            LocalTarget.Guid = WowReader.ReadUInt64((IntPtr)(BAdd + ClientOffsets.LocalTargetGUID));
 
             Graphics g = Graphics.FromImage(RadarBitmap);
 
@@ -478,7 +467,7 @@ namespace WoWRadar
                     g.DrawEllipse(new Pen(new SolidBrush(Color.Cyan)), (((int)(LocalPlayer.XPos - waypoint.X)) * RadarZoom + RadarWidth / 2) - 3, (((int)(LocalPlayer.YPos - waypoint.Y)) * RadarZoom + RadarWidth / 2) - 3, 2, 2);
                     if (chkRadius.Checked == true)
                     {
-                        g.FillEllipse(new SolidBrush(Color.FromArgb(50, 127, 127, 127)), (((int)(LocalPlayer.XPos - waypoint.X)) * RadarZoom + RadarWidth / 2) - 150, (((int)(LocalPlayer.YPos - waypoint.Y)) * RadarZoom + RadarWidth / 2) - 150, 300, 300);
+                        g.FillEllipse(new SolidBrush(Color.FromArgb(50, 127, 127, 127)), (((int)(LocalPlayer.XPos - waypoint.X)) * RadarZoom + RadarWidth / 2) - (150 * (RadarZoom)), (((int)(LocalPlayer.YPos - waypoint.Y)) * RadarZoom + RadarWidth / 2) - (150 * (RadarZoom)), 300 * RadarZoom, 300 * RadarZoom);
                     }
 
                     c++;
