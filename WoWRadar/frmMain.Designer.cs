@@ -404,6 +404,7 @@
             // chkMinimap
             // 
             this.chkMinimap.AutoSize = true;
+            this.chkMinimap.Enabled = false;
             this.chkMinimap.Location = new System.Drawing.Point(9, 139);
             this.chkMinimap.Name = "chkMinimap";
             this.chkMinimap.Size = new System.Drawing.Size(104, 17);

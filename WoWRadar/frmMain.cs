@@ -44,11 +44,12 @@ namespace WoWRadar
             InitializeComponent();
             RadarZoom = 10F;
             ZoomFactor = (int)(TILE_HEIGHT * (float)(RadarZoom / 0.5f));
-            if (!System.IO.Directory.Exists("Maps"))
-            {
+            //if (!System.IO.Directory.Exists("Maps"))
+            //{
+            //No up-to-date offsets for continent name for now.
                 chkMinimap.Checked = false;
                 chkMinimap.Enabled = false;
-            }
+            //}
         }
 
         MinimapData OldMinimap = new MinimapData(0, 0, 0, new Bitmap(1, 1));
@@ -106,11 +107,14 @@ namespace WoWRadar
         // Credits WhatSupMang, SillyBoy72 of MMowned.com
         public string PlayerNameFromGuid(ulong guid)
         {
-            return "???";
+            //return "???";
+            Process[] Processes = Process.GetProcessesByName("Wow");
+            uint BAdd = (uint)Processes[0].MainModule.BaseAddress;
+          
             ulong mask, base_, offset, current, shortGUID, testGUID;
 
-            mask = WowReader.ReadUInt32((IntPtr)((uint)NameOffsets.nameStore + (uint)NameOffsets.nameMask));
-            base_ = WowReader.ReadUInt32((IntPtr)((uint)NameOffsets.nameStore + (uint)NameOffsets.nameBase));
+            mask = WowReader.ReadUInt32((IntPtr)(BAdd + (uint)NameOffsets.nameStore + (uint)NameOffsets.nameMask));
+            base_ = WowReader.ReadUInt32((IntPtr)(BAdd + (uint)NameOffsets.nameStore + (uint)NameOffsets.nameBase));
 
             shortGUID = guid & 0xFFFFFFFF; 
             offset = 12 * (mask & shortGUID);
@@ -422,7 +426,7 @@ namespace WoWRadar
             RadarZoom = (trkZoom.Value / 10);
             this.lblRadarZoom.Text = "Zoom Factor: " + RadarZoom.ToString() + "x";
             ZoomFactor = (int)(TILE_HEIGHT * (float)(RadarZoom / 0.5f));
-            CurrentContinent = WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(BAdd + NameOffsets.continentName)) + NameOffsets.continentNameEx));
+            //CurrentContinent = WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(BAdd + NameOffsets.continentName)) + NameOffsets.continentNameEx));
 
             ClearBitmap(ref RadarBitmap);
 

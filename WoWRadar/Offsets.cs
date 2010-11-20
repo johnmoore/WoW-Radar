@@ -36,25 +36,25 @@ namespace WoWRadar
     public static class ClientOffsets
     {
         public static uint
-            CurrMgr = 0x008A5C20,
-            CurrMgrEx = 0x4618,
+            CurrMgr = 0x8B2F78,
+            CurrMgrEx = 0x462C,
             FirstObjectOffset = 0xB4,
-            LocalGuidOffset = 0xC8,
+            LocalGuidOffset = 0xB8,
             NextObjectOffset = 0x3C,
             LocalPlayerGUID = 0x008BD838,
-            LocalTargetGUID = 0x9816B0,
+            LocalTargetGUID = 0x98F6B8,
             CurrentContinent = 0xBFF84C;
     }
 
     public static class NameOffsets
     {
         public static uint
-            nameStore = 0x881988 + 0x8,
-            nameMask = 0x24,
-            nameBase = 0x1C,
-            nameString = 0x20,
-            PlayerName = 0x008A5C58,
-            mobName = 0xA0C,
+            nameStore = 0x88EA90 + 0x8,
+            nameMask = 0x024,
+            nameBase = 0x01C,
+            nameString = 0x020,
+            PlayerName = 0x8B2FB0,
+            mobName = 0xA24,
             mobNameEx = 0x60,
             continentName = 0x9162A0,
             continentNameEx = 0x28DC;
@@ -63,15 +63,15 @@ namespace WoWRadar
     public enum ObjectOffsets : uint
     {
         Type = 0x14,
-        Pos_X = 0x884,
-        Pos_Y = 0x880,
-        Pos_Z = 0x888,
-        Rot = ObjectOffsets.Pos_Y + 0x10,
+        Pos_X = 0x898 + 0x4,
+        Pos_Y = 0x898,
+        Pos_Z = 0x8A0,
+        Rot = 0x8A8,
         Guid = 0x30,
         UnitFields = 0x8,
         Node_Pos_X = 0x110,
-        Node_Pos_Y = 0x114,
-        Node_Pos_Z = 0x118
+        Node_Pos_Y = ObjectOffsets.Node_Pos_X + 0x4,
+        Node_Pos_Z = ObjectOffsets.Node_Pos_X + 0x8
     }
 
     public enum UnitOffsets : uint
