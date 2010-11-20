@@ -1,1 +1,0 @@
-Currently the minimap overlay functionality is disabled, as the program does not have updated offsets for obtaining the current continent's name.
