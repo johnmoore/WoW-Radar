@@ -36,26 +36,26 @@ namespace WoWRadar
     public static class ClientOffsets
     {
         public static uint
-            CurrMgr = 0x8B2F78,
-            CurrMgrEx = 0x462C,
-            FirstObjectOffset = 0xB4,
-            LocalGuidOffset = 0xB8,
-            NextObjectOffset = 0x3C,
+            CurrMgr = 0x8BF1A8, //0x8B3F78,
+            CurrMgrEx = 0x462C, //0x462C,
+            FirstObjectOffset = 0xB4, //good
+            LocalGuidOffset = 0xB8, //good
+            NextObjectOffset = 0x3C, //good
             LocalPlayerGUID = 0x008BD838,
-            LocalTargetGUID = 0x98F6B8,
-            CurrentContinent = 0xBFF84C;
+            LocalTargetGUID = 0x99C6B8, //0x98F6B8,
+            CurrentContinent = 0x7B76A0; //0xBFF84C;
     }
 
     public static class NameOffsets
     {
         public static uint
-            nameStore = 0x88EA90 + 0x8,
-            nameMask = 0x024,
-            nameBase = 0x01C,
-            nameString = 0x020,
-            PlayerName = 0x8B2FB0,
-            mobName = 0xA24,
-            mobNameEx = 0x60,
+            nameStore = 0x89ACC0 + 0x8, //0x88EA90 + 0x8,
+            nameMask = 0x024, //good
+            nameBase = 0x01C, //good
+            nameString = 0x020, //good
+            PlayerName = 0x8BF1E0, //0x8B2FB0,
+            mobName = 0xA24, //good
+            mobNameEx = 0x60, //good
             continentName = 0x9162A0,
             continentNameEx = 0x28DC;
     }

@@ -60,6 +60,7 @@ namespace WoWRadar
         uint TotalWowObjects = 0;
         int ZPosRange = 100;
         string CurrentContinent = "";
+        uint CurrentContinentID = 0;
         float RadarZoom = 10F;
         int ZoomFactor = 0; //this syncs the radar's zoom with the minimap
 
@@ -426,7 +427,7 @@ namespace WoWRadar
             RadarZoom = (trkZoom.Value / 10);
             this.lblRadarZoom.Text = "Zoom Factor: " + RadarZoom.ToString() + "x";
             ZoomFactor = (int)(TILE_HEIGHT * (float)(RadarZoom / 0.5f));
-            //CurrentContinent = WowReader.ReadString((IntPtr)(WowReader.ReadUInt32((IntPtr)(BAdd + NameOffsets.continentName)) + NameOffsets.continentNameEx));
+            CurrentContinentID = (WowReader.ReadUInt32((IntPtr)(BAdd + ClientOffsets.CurrentContinent)));
 
             ClearBitmap(ref RadarBitmap);
 
