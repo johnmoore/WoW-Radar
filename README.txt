@@ -1,8 +1,8 @@
-Home page: http://programiscellaneous.com/programming-projects/world-of-warcraft/wow-radar/what-is-it/
+Home page: http://www.programiscellaneous.com/programming-projects/wow-radar/what-is-it/
 
 Source available at http://github.com/johnmoore/WoW-Radar
 
-Map files available at http://programiscellaneous.com/programming-projects/world-of-warcraft/wow-radar/source-code/
+Map files available at http://www.programiscellaneous.com/programming-projects/wow-radar/source-code-maps-licensing/
 
 The Map folder goes in the same directory as the executable. When debugging, this will be /bin/
 =====
@@ -17,7 +17,7 @@ This program is not associated with or endorsed by Blizzard Entertainment in any
 World of Warcraft is copyright of Blizzard Entertainment.
 
 
-http://www.programiscellaneous.com/programming-projects/world-of-warcraft/wow-radar/what-is-it/
+http://www.programiscellaneous.com/programming-projects/wow-radar/what-is-it/
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
