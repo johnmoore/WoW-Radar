@@ -8,7 +8,7 @@
 // World of Warcraft is copyright of Blizzard Entertainment.
 //
 //
-// http://www.programiscellaneous.com/programming-projects/world-of-warcraft/wow-radar/what-is-it/
+// http://www.programiscellaneous.com/programming-projects/wow-radar/what-is-it/
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
